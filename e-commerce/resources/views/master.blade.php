@@ -13,13 +13,18 @@
     <title>E-Commerce</title>
 </head>
 <body>
-    
-</body>
-<script>
-    $(document).ready(()=>{
-        $('button').click(()=>{
-            alert('all set')
+    {{View::make('header')}}
+    @yield('content')
+    {{View::make('footer')}}
+
+    <script>
+        /*
+        $(document).ready(()=>{
+            $('button').click(()=>{
+                alert('all set')
+            })
         })
-    })
-</script>
+    */
+    </script>
+</body>
 </html>
