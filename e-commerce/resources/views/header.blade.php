@@ -12,7 +12,7 @@
         </ul>
         <ul class="navbar-nav ms-sm-auto">
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/" id="login">Logar</a>
+                <a class="nav-link" aria-current="page" href="/login" id="login">Logar</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#" id="signup">Cadastrar</a>

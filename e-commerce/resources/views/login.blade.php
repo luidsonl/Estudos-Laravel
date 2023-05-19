@@ -7,14 +7,15 @@
         <div class="col-8 border py-3">
 
             <h1>Login</h1>
-            <form>
+            <form action="login" method="POST">
                 <div class="mb-3">
+                    @csrf
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Digite seu email" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email" required>
                 </div>
                 <div class="mb-3">
-                    <label for="senha" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="senha" placeholder="Digite sua senha" required>
+                    <label for="password" class="form-label">Senha</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Entrar</button>
             </form>
