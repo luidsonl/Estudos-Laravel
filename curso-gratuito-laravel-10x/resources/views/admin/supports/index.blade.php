@@ -1,3 +1,6 @@
+@extends('master')
+@section('content')
+    
 <h1>Listagem dos supports</h1>
 
 <table>
@@ -16,3 +19,5 @@
         @endforeach
     </tbody>
 </table>
+
+@endsection
