@@ -6,10 +6,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-sm-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/supports" id="marketplace">Ver perguntas</a>
+            <a class="nav-link @if(request()->path() === 'supports') active @endif " href="/supports">Ver perguntas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/supports/create" id="marketplace">Fazer pergunta</a>
+            <a class="nav-link @if(request()->path() === 'supports/create') active @endif" href="/supports/create" id="">Fazer pergunta</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-sm-auto">
