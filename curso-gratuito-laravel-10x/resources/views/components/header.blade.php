@@ -12,6 +12,7 @@
             <a class="nav-link @if(request()->path() === 'supports/create') active @endif" href="/supports/create" id="">Fazer pergunta</a>
           </li>
         </ul>
+        <!--
         <ul class="navbar-nav ms-sm-auto">
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="#" id="login">Logar</a>
@@ -20,6 +21,7 @@
                 <a class="nav-link" href="#" id="signup">Cadastrar</a>
               </li>
         </ul>
+        -->
       </div>
     </div>
 </nav>

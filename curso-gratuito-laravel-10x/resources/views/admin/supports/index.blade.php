@@ -7,7 +7,7 @@
     <table class="table">
         <thead class="">
             <th>Assunto</th>
-            <th>Descrição</th>
+            <th>Pergunta</th>
             <th>Status</th>
             <th></th>
         </thead>

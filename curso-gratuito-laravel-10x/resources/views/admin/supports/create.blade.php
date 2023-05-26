@@ -1,11 +1,27 @@
 @extends('master')
 @section('content')
-<h1> Nova Pergunta</h1>
 
-<form action="{{route('supports.store')}}" method="POST">
-    @csrf()
-    <input type="text" name="subject" placeholder="Assunto">
-    <textarea name="body" cols="30" rows="5" placeholder="Descrição"></textarea>
-    <input type="submit" value="Enviar">
-</form>
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="text-center mb-4">Nova Pergunta</h1>
+            <form action="{{ route('supports.store') }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <label for="subject">Assunto:</label>
+                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Assunto">
+                </div>
+                <div class="mb-3">
+                    <label for="body">Faça a pergunta:</label>
+                    <textarea class="form-control" id="body" name="body" cols="30" rows="5" placeholder="Pergunta"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 @endsection
