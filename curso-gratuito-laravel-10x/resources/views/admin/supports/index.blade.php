@@ -17,7 +17,9 @@
                     <td> {{ $support->subject}} </td>
                     <td> {{ $support->body}} </td>
                     <td> {{ $support->status}} </td>
-                    <td></td>
+                    <td>
+                        <a href=" {{route('supports.show', [$support->id])}}"><i class="bi bi-search"></i></a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
