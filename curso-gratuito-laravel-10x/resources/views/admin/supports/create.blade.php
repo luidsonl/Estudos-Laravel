@@ -12,7 +12,7 @@
                     <input type="text" class="form-control" id="subject" name="subject" placeholder="Assunto">
                 </div>
                 <div class="mb-3">
-                    <label for="body">Faça a pergunta:</label>
+                    <label for="body">Pergunta:</label>
                     <textarea class="form-control" id="body" name="body" cols="30" rows="5" placeholder="Pergunta"></textarea>
                 </div>
                 <div class="text-center">
