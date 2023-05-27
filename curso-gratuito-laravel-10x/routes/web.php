@@ -14,6 +14,9 @@ Route::post('/supports', [SupportController::class, 'store'])->name('supports.st
 //Rotas patch (atualização parcial de registros)
 Route::patch('/supports/{id}', [SupportController::class, 'update'])->name('supports.update');
 
+//Rotas delete
+Route::delete('supports/{id}',[SupportController::class, 'destroy'])->name('supports.destroy');
+
 //Rotas get
 Route::get('/contact', [SiteController::class, 'contact']);
 Route::get('/supports', [SupportController::class, 'index'])->name('supports.index');

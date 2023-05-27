@@ -19,7 +19,6 @@
                     <td> {{ $support->status}} </td>
                     <td>
                         <a href=" {{route('supports.show', [$support->id])}}" title="Exibir"><i class="bi bi-search"></i></a>
-                        <a href="{{route('supports.edit', [$support->id])}}" title="Editar"><i class="bi bi-gear-fill"></i></a>
                     </td>
                 </tr>
             @endforeach

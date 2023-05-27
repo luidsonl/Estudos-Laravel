@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container d-flex justify-content-center align-items-center">
-    <div class="card">
+    <div class="card w-75 h-75">
         <div class="card-body">
             <h1 class="text-center mb-4">Editar pergunta</h1>
             <form action="{{ route('supports.update', $support->id)}}" method="POST">
