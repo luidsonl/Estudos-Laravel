@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSupportRequest;
+use App\Http\Requests\UpdateSupportRequest;
 use App\Models\Support;
 use Illuminate\Http\Request;
 
@@ -36,7 +38,7 @@ class SupportController extends Controller
         return view('admin/supports/create');
     }
 
-    public function store(Request $request, Support $support){
+    public function store(Support $support, StoreSupportRequest $request){
         $data = $request->all();
         $data['status'] = 'active';
         $support = $support->create($data);
@@ -51,7 +53,7 @@ class SupportController extends Controller
         return view('admin/supports/edit', compact('support'));
     }
 
-    public function update(string|int $id, Support $support, Request $request){
+    public function update(string|int $id, Support $support, UpdateSupportRequest $request){
         if(!$support = $support->where('id', $id)->first()){
             return redirect()->back();
         }
