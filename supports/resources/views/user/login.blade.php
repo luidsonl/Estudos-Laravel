@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
 <main class="container d-flex justify-content-center align-items-center d-column">
-    <div class="card">
+    <div class="card w-50 h-50">
         <div class="card-body">
             <h3>Login</h3>
 
@@ -9,11 +9,11 @@
                 @csrf
                 <div class="mb-3">
                     <label for="email" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <input type="email" class="form-control" id="email" name="email" required value="{{old('email')}}" placeholder="Informe o E-mail">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
+                    <input type="password" class="form-control" id="password" name="password" required placeholder="Informe a senha">
                 </div>
                 
         

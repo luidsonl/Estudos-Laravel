@@ -1,14 +1,14 @@
-# E-commerce simples feito com Laravel
+# E-commerce simples
 
 [:file_folder:](./e-commerce)
 
-*Status: Incompleto*
+*Status: Em progresso*
 
 # Fórum de dúvidas simples
 
 [:file_folder:](./supports)
 
-*Status: Incompleto*
+*Status: Em progresso*
 
 ----------------
 ## Links que usei como base:

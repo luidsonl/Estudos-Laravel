@@ -27,8 +27,17 @@ class UserController extends Controller
         }
  
         return redirect()->route('user.index')->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+            'Email ou senha incorretos',
+        ])->withInput($request->only('email'));
+    }
+
+    public function profile(){
+        return view('user/profile');
     }
     
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('user.index');
+    }
 }
