@@ -36,13 +36,14 @@ Route::middleware(CheckAuth::class)->group(function () {
 
 //Rotas não protegidas
 //Post
-Route::post('/login', [UserController::class, 'auth'])->name('user.auth');
-
+Route::post('/auth', [UserController::class, 'auth'])->name('user.auth');
+Route::post('/users', [UserController::class, 'store'])->name('user.store');
 
 
 
 //Rotas get
-Route::get('/contact', [SiteController::class, 'contact']);
-Route::get('/', [UserController::class, 'index'])->name('user.index');
+Route::get('/signup', [UserController::class, 'signup'])->name('user.signup');
+Route::get('/about', [SiteController::class, 'about']);
+Route::get('/', [UserController::class, 'login'])->name('user.login');
 
 

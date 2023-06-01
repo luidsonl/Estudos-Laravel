@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
-    public function contact(){
-        return view('site/contact');
+    public function about(){
+        return view('site/about');
     }
     //retorna uma view chamada 'site/contact'
 }
