@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\User\CreateUserRequest;
 use App\Models\User;
 
 class UserController extends Controller

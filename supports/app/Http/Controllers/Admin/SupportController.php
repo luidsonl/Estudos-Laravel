@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreSupportRequest;
-use App\Http\Requests\UpdateSupportRequest;
+use App\Http\Requests\Support\StoreSupportRequest;
+use App\Http\Requests\Support\UpdateSupportRequest;
 use App\Models\Support;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SupportController extends Controller
 {
@@ -41,6 +42,9 @@ class SupportController extends Controller
     public function store(Support $support, StoreSupportRequest $request){
         $data = $request->all();
         $data['status'] = 'active';
+        $data['user_id'] = strval(Auth::user()->id);
+
+        
         $support = $support->create($data);
         
         return redirect()->route('supports.index');

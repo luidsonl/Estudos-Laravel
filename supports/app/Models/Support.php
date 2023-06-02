@@ -12,6 +12,7 @@ class Support extends Model
     protected $fillable = [
         'subject',
         'body',
-        'status'
+        'status',
+        'user_id'
     ];
 }

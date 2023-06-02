@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Support;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSupportRequest extends FormRequest
+class DestroySupportRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,16 +22,7 @@ class StoreSupportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'subject' => [
-                'required',
-                'min:3',
-                'max:255',
-            ],
-            'body'=>[
-                'required',
-                'min:3',
-                'max: 10000'
-            ]
+            //
         ];
     }
 }

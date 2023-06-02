@@ -2,7 +2,7 @@
 
   @auth
   <!-- Conteúdo acessível apenas para usuários autenticados -->
-  Olá, {{ Auth::user()->name }}!
+  
   @else
     <!-- Conteúdo acessível para usuários não autenticados -->
     Por favor, faça login para acessar esta página.
