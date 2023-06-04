@@ -5,9 +5,9 @@
 
     <div class="container border rounded p-3">
         <div class="mb-3 d-flex justify-content-between ">
-            <h1> {{$support->subject}} </h1>
+            <h1 class="me-4"> {{$support->subject}} </h1>
             <div>
-                <span class="h5"> {{$support->status}} </span>
+                <span class="h5"> <?php echo $statusIcon[$support->status]; ?></span>
 
                 <a href="{{route('supports.edit', [$support->id])}}" title="Editar"><i class="bi bi-pencil"></i></a>
 

@@ -11,12 +11,20 @@ use Illuminate\Support\Facades\Auth;
 
 class SupportController extends Controller
 {
+    public $statusIcon = array(
+        'active' => '<i class="bi bi-exclamation-circle-fill text-success" title="Ativo"></i>',
+        'pending' => '<i class="bi bi-hourglass-split text-warning" title="Pendente"></i>',
+        'completed' => '<i class="bi bi-check2-square text-primary" title="Solucionado"></i>',
+        'archived' => '<i class="bi bi-archive-fill text-secondary" title="Arquivado"></i>'
+    );
+
     public function index(Support $support){
 
         $supports = $support->all();
 
         return view('admin/supports/index', [
-            'supports'=>$supports
+            'supports'=>$supports,
+            'statusIcon'=>$this->statusIcon
         ]);
     }
 
@@ -24,15 +32,13 @@ class SupportController extends Controller
         if(!$support = $support->find($id)){
             return redirect()->back();
         }
-        return view('admin/supports/show', compact('support'));
+        //return view('admin/supports/show', compact('support'));
 
         
-        /*
-        //é igual a:
         return view('admin/supports/show', [
-            'supports'=>$support
+            'support'=>$support,
+            'statusIcon'=>$this->statusIcon
         ]);
-        */
     }
 
     public function create(){
