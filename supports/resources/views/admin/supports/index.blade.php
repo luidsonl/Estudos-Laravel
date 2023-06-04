@@ -20,7 +20,7 @@
                         </a>  
                     </td>
                     <td class="col-6"> {{Str::limit($support->body, 200)}} </td>
-                    <td class="col-2"> {{$support->user_id}} </td>
+                    <td class="col-2"> {{Str::limit($support->user->name, 30)}} </td>
                     <td class="col-1">
                         <div class="container d-flex ">
                             <div class="mx-1">

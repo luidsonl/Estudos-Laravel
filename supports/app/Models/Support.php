@@ -15,4 +15,8 @@ class Support extends Model
         'status',
         'user_id'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
