@@ -20,6 +20,7 @@ Route::middleware(CheckAuth::class)->group(function () {
 
     // Rotas get
     Route::get('/supports', [SupportController::class, 'index'])->name('supports.index');
+    Route::get('/supports/my', [SupportController::class, 'my'])->name('supports.my');
     Route::get('/supports/create', [SupportController::class, 'create'])->name('supports.create');
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
 

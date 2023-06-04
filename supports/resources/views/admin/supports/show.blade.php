@@ -4,20 +4,29 @@
     <h3>Detalhes da dúvida</h3>
 
     <div class="container border rounded p-3">
+        <p> Autor: {{$support->user->name}} </p>
         <div class="mb-3 d-flex justify-content-between ">
             <h1 class="me-4"> {{$support->subject}} </h1>
             <div>
                 <span class="h5"> <?php echo $statusIcon[$support->status]; ?></span>
+                
+                @if(Auth::user()->id == $support->user_id)
+                
+                <span>
+                    <a href="{{route('supports.edit', [$support->id])}}" title="Editar"><i class="bi bi-pencil"></i></a>
 
-                <a href="{{route('supports.edit', [$support->id])}}" title="Editar"><i class="bi bi-pencil"></i></a>
+                    <form method="POST" action="{{route('supports.destroy', $support->id)}}" class="d-inline" id="delete-confirm">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" title="Deletar" style="all:unset; cursor: pointer;">
+                            <i class="bi bi-trash text-danger"></i>
+                        </button>
+                    </form>
+                </span>
+                @endif
 
-                <form method="POST" action="{{route('supports.destroy', $support->id)}}" class="d-inline" id="delete-confirm">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" title="Deletar" style="all:unset; cursor: pointer;">
-                        <i class="bi bi-trash text-danger"></i>
-                    </button>
-                </form>
+                
+                
             </div>
             
         </div>

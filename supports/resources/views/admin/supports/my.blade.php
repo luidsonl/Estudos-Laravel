@@ -2,14 +2,13 @@
 @section('content')
 
 <main class="container">
-    <h1 >Listagem de supports</h1>
+    <h1 >Listagem dos supports</h1>
 
     <table class="table mt-5">
         <thead class="">
             <th class="col-3">Assunto</th>
-            <th class="col-6">Pergunta</th>
-            <th class="col-2">Autor</th>
-            <th class="col-1"><i class="bi bi-chat-dots" title="Discussão"></i></th>
+            <th class="col-7">Pergunta</th>
+            <th class="col-2"><i class="bi bi-chat-dots" title="Discussão"></i></th>
         </thead>
         <tbody>
 
@@ -22,8 +21,6 @@
                     </td>
 
                     <td> {{Str::limit($support->body, 200)}} </td>
-
-                    <td> {{Str::limit($support->user->name, 30)}} </td>
 
                     <td>
                         <div class="container d-flex ">

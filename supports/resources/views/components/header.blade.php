@@ -1,13 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
 
-  @auth
-  <!-- Conteúdo acessível apenas para usuários autenticados -->
-  
-  @else
-    <!-- Conteúdo acessível para usuários não autenticados -->
-    Por favor, faça login para acessar esta página.
-  @endauth
-
 
     <div class="container">
       <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,28 +12,33 @@
 
 
         <ul class="navbar-nav me-sm-auto">
-          <li class="nav-item">
-            <a class="nav-link @if(request()->path() === 'supports') active @endif " href="/supports">Ver perguntas</a>
+          <li class="nav-item me-3">
+            <a class="nav-link {{ request()->routeIs('supports.index') ? 'active' : '' }}" href="{{ route('supports.index') }}">Todos supports</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link @if(request()->path() === 'supports/create') active @endif" href="/supports/create" id="">Fazer pergunta</a>
+          <li class="nav-item me-3">
+            <a class="nav-link {{ request()->routeIs('supports.my') ? 'active' : '' }}" href="{{ route('supports.my') }}">Meus supports</a>
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link {{ request()->routeIs('supports.create') ? 'active' : '' }}" href="{{ route('supports.create') }}">Pedir support</a>
+
           </li>
 
         </ul>
         <ul class="navbar-nav ms-sm-auto">
           <li>
-            <a class="nav-link @if(request()->path() === 'profile') active @endif" href="/profile" >{{Auth::user()->name}}</a>
+            <a class="nav-link {{ request()->routeIs('user.profile') ? 'active' : '' }}" href="{{ route('user.profile') }}">{{Auth::user()->name}}</a>
+
           </li>
         </ul>
 
         @else
         
         <ul class="navbar-nav ms-sm-auto">
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/" id="login">Logar</a>
+            <li class="nav-item me-3">
+              <a class="nav-link {{ request()->routeIs('user.login') ? 'active' : '' }}" href="{{ route('user.login') }}">Logar</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/signup" id="signup">Cadastrar</a>
+              <li class="nav-item me-3">
+                <a class="nav-link {{ request()->routeIs('user.signup') ? 'active' : '' }}" href="{{ route('user.signup') }}">Cadastrar</a>
               </li>
         </ul>
 

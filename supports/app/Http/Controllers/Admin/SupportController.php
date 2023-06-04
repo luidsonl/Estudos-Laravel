@@ -27,6 +27,15 @@ class SupportController extends Controller
             'statusIcon'=>$this->statusIcon
         ]);
     }
+    public function my(Support $support){
+
+        $supports = $support->where('user_id', Auth::user()->id)->get();
+
+        return view('admin/supports/my', [
+            'supports'=>$supports,
+            'statusIcon'=>$this->statusIcon
+        ]);
+    }
 
     public function show(string|int $id, Support $support){
         if(!$support = $support->find($id)){
@@ -46,6 +55,10 @@ class SupportController extends Controller
     }
 
     public function store(Support $support, StoreSupportRequest $request){
+        if(Auth::user()->id != $support->user_id){
+            return redirect()->back();
+        }
+
         $data = $request->all();
         $data['status'] = 'active';
         $data['user_id'] = strval(Auth::user()->id);
@@ -60,11 +73,17 @@ class SupportController extends Controller
         if(!$support = $support->where('id', $id)->first()){
             return redirect()->back();
         }
+        if(Auth::user()->id != $support->user_id){
+            return redirect()->back();
+        }
         return view('admin/supports/edit', compact('support'));
     }
 
     public function update(string|int $id, Support $support, UpdateSupportRequest $request){
         if(!$support = $support->where('id', $id)->first()){
+            return redirect()->back();
+        }
+        if(Auth::user()->id != $support->user_id){
             return redirect()->back();
         }
         $support->update($request->only([
@@ -76,6 +95,9 @@ class SupportController extends Controller
 
     public function destroy(string|int $id, Support $support){
         if(!$support = $support->find($id)){
+            return redirect()->back();
+        }
+        if(Auth::user()->id != $support->user_id){
             return redirect()->back();
         }
         $support->delete();
