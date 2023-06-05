@@ -30,12 +30,15 @@
             </div>
             
         </div>
+
         
         <div class="border rounded p-2">
             <p> {{$support->body}} </p>
         </div>
         
+        <a href="{{route('reply.create',[$support->id])}}" class="btn btn-primary mt-3">Responder</a>
     </div>
+
 </div>
 
 @endsection

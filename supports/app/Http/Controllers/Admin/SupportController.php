@@ -22,7 +22,7 @@ class SupportController extends Controller
 
         $supports = $support->all();
 
-        return view('admin/supports/index', [
+        return view('supports/index', [
             'supports'=>$supports,
             'statusIcon'=>$this->statusIcon
         ]);
@@ -31,7 +31,7 @@ class SupportController extends Controller
 
         $supports = $support->where('user_id', Auth::user()->id)->get();
 
-        return view('admin/supports/my', [
+        return view('supports/my', [
             'supports'=>$supports,
             'statusIcon'=>$this->statusIcon
         ]);
@@ -44,20 +44,17 @@ class SupportController extends Controller
         //return view('admin/supports/show', compact('support'));
 
         
-        return view('admin/supports/show', [
+        return view('supports/show', [
             'support'=>$support,
             'statusIcon'=>$this->statusIcon
         ]);
     }
 
     public function create(){
-        return view('admin/supports/create');
+        return view('supports/create');
     }
 
     public function store(Support $support, StoreSupportRequest $request){
-        if(Auth::user()->id != $support->user_id){
-            return redirect()->back();
-        }
 
         $data = $request->all();
         $data['status'] = 'active';
@@ -76,7 +73,7 @@ class SupportController extends Controller
         if(Auth::user()->id != $support->user_id){
             return redirect()->back();
         }
-        return view('admin/supports/edit', compact('support'));
+        return view('supports/edit', compact('support'));
     }
 
     public function update(string|int $id, Support $support, UpdateSupportRequest $request){

@@ -17,7 +17,7 @@
                 </div>
                 
         
-                <button type="submit" class="btn btn-primary">Registrar</button>
+                <button type="submit" class="btn btn-primary">Logar</button>
             </form>
 
             @if ($errors->any())

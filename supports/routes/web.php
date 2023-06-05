@@ -5,6 +5,7 @@
 //O ->name() é usado para apelidar uma rota
 
 use App\Http\Controllers\Admin\{SupportController};
+use App\Http\Controllers\Admin\ReplyController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Site\SiteController;
@@ -16,7 +17,7 @@ Route::middleware(CheckAuth::class)->group(function () {
     //Rotas post
     Route::post('/supports', [SupportController::class, 'store'])->name('supports.store');
     Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');
-
+    Route::post('/supports/reply', [ReplyController::class, 'store'])->name('reply.store');
 
     // Rotas get
     Route::get('/supports', [SupportController::class, 'index'])->name('supports.index');
@@ -27,9 +28,12 @@ Route::middleware(CheckAuth::class)->group(function () {
     //Rotas get dinâmicas
     Route::get('/supports/{id}/edit',[SupportController::class, 'edit'])->name('supports.edit');
     Route::get('/supports/{id}', [SupportController::class, 'show'])->name('supports.show');
+    Route::get('/supports/reply/{id}/edit', [ReplyController::class, 'store'])->name('reply.edit');
+    Route::get('/supports/reply/{support_id}', [ReplyController::class, 'create'])->name('reply.create');
 
     //Rotas patch (atualização parcial de registros)
     Route::patch('/supports/{id}', [SupportController::class, 'update'])->name('supports.update');
+    Route::patch('/supports/reply/{id}', [SupportController::class, 'update'])->name('reply.update');
 
     //Rotas delete
     Route::delete('supports/{id}',[SupportController::class, 'destroy'])->name('supports.destroy');

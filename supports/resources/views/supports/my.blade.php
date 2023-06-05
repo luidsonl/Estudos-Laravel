@@ -2,7 +2,7 @@
 @section('content')
 
 <main class="container">
-    <h1 >Listagem dos supports</h1>
+    <h1 >Meus supports</h1>
 
     <table class="table mt-5">
         <thead class="">
