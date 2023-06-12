@@ -29,7 +29,7 @@ Route::middleware(CheckAuth::class)->group(function () {
     Route::get('/supports/{id}/edit',[SupportController::class, 'edit'])->name('supports.edit');
     Route::get('/supports/{id}', [SupportController::class, 'show'])->name('supports.show');
     Route::get('/supports/reply/{id}/edit', [ReplyController::class, 'store'])->name('reply.edit');
-    Route::get('/supports/reply/{support_id}', [ReplyController::class, 'create'])->name('reply.create');
+    Route::get('/supports/reply/{supportId}', [ReplyController::class, 'create'])->name('reply.create');
 
     //Rotas patch (atualização parcial de registros)
     Route::patch('/supports/{id}', [SupportController::class, 'update'])->name('supports.update');
