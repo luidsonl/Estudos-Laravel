@@ -23,7 +23,6 @@
             <form action="{{ route('reply.store')}}" method="POST">
                 @csrf
                 <input type="hidden" name="support_id" value="{{$support->id}}">
-                <input type="hidden" name='user_id' value="{{Auth::user()->id}}">
                 <div class="mb-3">
                     <textarea class="form-control" id="body" name="body" cols="30" rows="5" placeholder="Resposta"></textarea>
                 </div>

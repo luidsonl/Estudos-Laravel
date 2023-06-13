@@ -1,12 +1,10 @@
-# E-commerce simples
-
-[:file_folder:](./e-commerce)
+# [:file_folder: E-commerce simples](./e-commerce)
 
 *Status: Em progresso*
 
-# Fórum de dúvidas simples
+# [:file_folder: Fórum de dúvidas simples](./supports)
 
-[:file_folder:](./supports)
+
 
 *Status: Em progresso*
 

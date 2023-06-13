@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Support\StoreSupportRequest;
 use App\Http\Requests\Support\UpdateSupportRequest;
+use App\Models\Reply;
 use App\Models\Support;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,16 +38,18 @@ class SupportController extends Controller
         ]);
     }
 
-    public function show(string|int $id, Support $support){
+    public function show(string|int $id, Support $support, Reply $reply){
         if(!$support = $support->find($id)){
             return redirect()->back();
         }
         //return view('admin/supports/show', compact('support'));
 
-        
+        $replies = $reply->where('support_id', $support->id)->get();
+
         return view('supports/show', [
             'support'=>$support,
-            'statusIcon'=>$this->statusIcon
+            'statusIcon'=>$this->statusIcon,
+            'replies'=> $replies
         ]);
     }
 

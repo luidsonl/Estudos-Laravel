@@ -7,6 +7,7 @@ use App\Http\Requests\Reply\StoreReplyRequest;
 use App\Models\Reply;
 use App\Models\Support;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReplyController extends Controller
 {
@@ -22,6 +23,8 @@ class ReplyController extends Controller
 
     public function store(Reply $reply, StoreReplyRequest $request){
         $data = $request->all();
+        $data['user_id'] = strval(Auth::user()->id);
+
 
         $reply = $reply->create($data);
         return redirect()->route('supports.index');

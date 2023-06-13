@@ -36,7 +36,47 @@
             <p> {{$support->body}} </p>
         </div>
         
-        <a href="{{route('reply.create',[$support->id])}}" class="btn btn-primary mt-3">Responder</a>
+        <a href="{{route('reply.create',[$support->id])}}" class="btn btn-primary my-3 ms-auto">Responder</a>
+
+        <div class="border-top my-3">
+            <h2 class="my-3">Respostas</h2>
+            @foreach($replies as $reply)
+                <div class="border rounded p-2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2">
+                                <div class="fw-bold">
+                                    {{Str::limit($reply->user->name, 30)}}
+                                </div>
+                                
+                            </div>
+                            <div class="col-9">
+                                {{$reply->body}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col d-flex justify-content-end">
+                                @if(Auth::user()->id == $reply->user_id)
+                
+                                <span>
+                                    <a href="" title="Editar"><i class="bi bi-pencil"></i></a>
+
+                                    <form method="POST" action="" class="d-inline" id="delete-confirm">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" title="Deletar" style="all:unset; cursor: pointer;">
+                                            <i class="bi bi-trash text-danger"></i>
+                                        </button>
+                                    </form>
+                                </span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+       
     </div>
 
 </div>
