@@ -21,7 +21,7 @@ class SupportController extends Controller
 
     public function index(Support $support){
 
-        $supports = $support->all();
+        $supports = $support->orderBy('updated_at', 'desc')->get();
 
         return view('supports/index', [
             'supports'=>$supports,
