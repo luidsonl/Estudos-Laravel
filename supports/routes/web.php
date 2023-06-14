@@ -49,7 +49,7 @@ Route::post('/users', [UserController::class, 'store'])->name('user.store');
 
 //Rotas get
 Route::get('/signup', [UserController::class, 'signup'])->name('user.signup');
-Route::get('/about', [SiteController::class, 'about']);
+Route::get('/about', [SiteController::class, 'about'])->name('about');
 Route::get('/', [UserController::class, 'login'])->name('user.login');
 
 

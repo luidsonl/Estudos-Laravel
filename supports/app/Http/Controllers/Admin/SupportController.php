@@ -103,6 +103,6 @@ class SupportController extends Controller
         }
         $support->delete();
 
-        return redirect()->route('supports.index');
+        return redirect()->route('supports.my');
     }
 }

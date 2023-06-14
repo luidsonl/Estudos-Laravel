@@ -6,7 +6,7 @@
 
 
 
-*Status: Em progresso*
+*Status: Minimamente funcional*
 
 ----------------
 ## Links que usei como base:

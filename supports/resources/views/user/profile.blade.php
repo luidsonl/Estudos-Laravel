@@ -23,6 +23,12 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <a href="{{route('about')}}" class="btn">Sobre</a>
+            </div>
+            
+        </div>
     </div>
 
 @endsection
