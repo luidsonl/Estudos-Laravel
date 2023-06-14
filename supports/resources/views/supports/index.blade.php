@@ -41,6 +41,11 @@
 
         </tbody>
     </table>
+    <div class="container">
+        {{ $supports->links('pagination::bootstrap-5') }}
+
+    </div>
+    
 </main>
 
 

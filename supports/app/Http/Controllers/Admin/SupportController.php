@@ -21,7 +21,7 @@ class SupportController extends Controller
 
     public function index(Support $support){
 
-        $supports = $support->orderBy('updated_at', 'desc')->get();
+        $supports = $support->orderBy('updated_at', 'desc')->paginate(10);
 
         return view('supports/index', [
             'supports'=>$supports,
@@ -30,7 +30,7 @@ class SupportController extends Controller
     }
     public function my(Support $support){
 
-        $supports = $support->where('user_id', Auth::user()->id)->get();
+        $supports = $support->where('user_id', Auth::user()->id)->orderBy('updated_at', 'desc')->paginate(10);
 
         return view('supports/my', [
             'supports'=>$supports,
@@ -44,7 +44,7 @@ class SupportController extends Controller
         }
         //return view('admin/supports/show', compact('support'));
 
-        $replies = $reply->where('support_id', $support->id)->get();
+        $replies = $reply->where('support_id', $support->id)->orderBy('updated_at', 'desc')->get();
 
         return view('supports/show', [
             'support'=>$support,
@@ -64,9 +64,9 @@ class SupportController extends Controller
         $data['user_id'] = strval(Auth::user()->id);
 
         
-        $support = $support->create($data);
+        $support->create($data);
         
-        return redirect()->route('supports.index');
+        return redirect()->route('supports.my');
     }
 
     public function edit(string|int $id, Support $support){

@@ -26,7 +26,7 @@ class ReplyController extends Controller
         $data['user_id'] = strval(Auth::user()->id);
 
 
-        $reply = $reply->create($data);
-        return redirect()->route('supports.index');
+        $reply->create($data);
+        return redirect()->route('supports.show', $data['support_id']);
     }
 }

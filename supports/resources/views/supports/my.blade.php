@@ -7,8 +7,8 @@
     <table class="table mt-5">
         <thead class="">
             <th class="col-3">Assunto</th>
-            <th class="col-7">Pergunta</th>
-            <th class="col-2"><i class="bi bi-chat-dots" title="Discussão"></i></th>
+            <th class="col-8">Pergunta</th>
+            <th class="col-1"><i class="bi bi-chat-dots" title="Discussão"></i></th>
         </thead>
         <tbody>
 
@@ -38,6 +38,11 @@
 
         </tbody>
     </table>
+
+    <div class="container">
+        {{ $supports->links('pagination::bootstrap-5') }}
+
+    </div>
 </main>
 
 
