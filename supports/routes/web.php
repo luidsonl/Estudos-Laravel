@@ -28,12 +28,12 @@ Route::middleware(CheckAuth::class)->group(function () {
     //Rotas get dinâmicas
     Route::get('/supports/{id}/edit',[SupportController::class, 'edit'])->name('supports.edit');
     Route::get('/supports/{id}', [SupportController::class, 'show'])->name('supports.show');
-    Route::get('/supports/reply/{id}/edit', [ReplyController::class, 'store'])->name('reply.edit');
+    Route::get('/supports/reply/{id}/edit', [ReplyController::class, 'edit'])->name('reply.edit');
     Route::get('/supports/reply/{supportId}', [ReplyController::class, 'create'])->name('reply.create');
 
     //Rotas patch (atualização parcial de registros)
     Route::patch('/supports/{id}', [SupportController::class, 'update'])->name('supports.update');
-    Route::patch('/supports/reply/{id}', [SupportController::class, 'update'])->name('reply.update');
+    Route::patch('/supports/reply/{id}', [ReplyController::class, 'update'])->name('reply.update');
 
     //Rotas delete
     Route::delete('supports/{id}',[SupportController::class, 'destroy'])->name('supports.destroy');

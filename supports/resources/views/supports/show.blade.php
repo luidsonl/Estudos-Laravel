@@ -82,9 +82,9 @@
                     @if(Auth::user()->id == $reply->user_id)
     
                     <span>
-                        <a href="" title="Editar"><i class="bi bi-pencil"></i></a>
+                        <a href="{{route('reply.edit', $reply->id)}}" title="Editar"><i class="bi bi-pencil"></i></a>
     
-                        <form method="POST" action="" class="d-inline" id="delete-confirm">
+                        <form method="POST" action="{{route('reply.destroy', $reply->id)}}" class="d-inline" id="delete-confirm">
                             @csrf
                             @method('DELETE')
                             <button type="submit" title="Deletar" style="all:unset; cursor: pointer;">

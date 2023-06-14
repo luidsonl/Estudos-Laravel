@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reply\StoreReplyRequest;
+use App\Http\Requests\Reply\UpdateReplyRequest;
 use App\Models\Reply;
 use App\Models\Support;
 use Illuminate\Http\Request;
@@ -40,5 +41,31 @@ class ReplyController extends Controller
         $reply->delete();
 
         return redirect()->route('supports.show', $reply['support_id']);
+    }
+
+    public function edit(string|int $id, Reply $reply){
+        if(!$reply = $reply->where('id', $id)->first()){
+            return redirect()->back();
+        }
+        if(Auth::user()->id != $reply->user_id){
+            return redirect()->back();
+        }
+        //dd($reply);
+        return view('replies/edit', [
+            'reply'=>$reply,
+        ]);
+    }
+
+    public function update(string|int $id, Reply $reply, UpdateReplyRequest $request){
+        if(!$reply = $reply->where('id', $id)->first()){
+            return redirect()->back();
+        }
+        if(Auth::user()->id != $reply->user_id){
+            return redirect()->back();
+        }
+        $reply->update($request->only([
+            'body',
+        ]));
+        return redirect()->route('supports.show', $reply->support_id);
     }
 }

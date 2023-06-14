@@ -5,7 +5,7 @@
     <div class="card w-75 h-75">
         <div class="card-body">
             <h1 class="text-center mb-4">Novo Support</h1>
-            <form action="{{ route('supports.store') }}" method="POST">
+            <form action="{{ route('supports.store') }}" method="POST" autocomplete="off">
                 @csrf
                 <div class="mb-3">
                     <label for="subject">Assunto:</label>
