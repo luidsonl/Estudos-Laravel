@@ -37,6 +37,7 @@ Route::middleware(CheckAuth::class)->group(function () {
 
     //Rotas delete
     Route::delete('supports/{id}',[SupportController::class, 'destroy'])->name('supports.destroy');
+    Route::delete('supports/reply/{id}',[ReplyController::class, 'destroy'])->name('reply.destroy');
 });
 
 //Rotas não protegidas

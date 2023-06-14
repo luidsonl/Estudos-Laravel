@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container">
-    <h2>Detalhes da dúvida</h2>
+    <h2>Support</h2>
 
     <div class="border rounded p-3">
         <div class="row">

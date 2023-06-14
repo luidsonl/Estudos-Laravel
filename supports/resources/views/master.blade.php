@@ -17,7 +17,10 @@
     {{View::make('components/header')}}
     @yield('content')
     {{--View::make('components/footer')--}}
-
+    @auth
+    @else
+    {{View::make('components/footer')}}
+    @endauth
     <script>
     </script>
 </body>

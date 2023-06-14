@@ -15,7 +15,7 @@ class SupportController extends Controller
     public $statusIcon = array(
         'active' => '<i class="bi bi-exclamation-circle-fill text-success" title="Ativo"></i>',
         'pending' => '<i class="bi bi-hourglass-split text-warning" title="Pendente"></i>',
-        'completed' => '<i class="bi bi-check2-square text-primary" title="Solucionado"></i>',
+        'completed' => '<i class="bi bi-check2-square text-success" title="Solucionado"></i>',
         'archived' => '<i class="bi bi-archive-fill text-secondary" title="Arquivado"></i>'
     );
 
@@ -89,6 +89,7 @@ class SupportController extends Controller
         $support->update($request->only([
             'subject',
             'body',
+            'status',
         ]));
         return redirect()->route('supports.show', $id);
     }

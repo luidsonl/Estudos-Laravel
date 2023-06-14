@@ -1,10 +1,10 @@
 <footer class="footer mt-auto">
     <div class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <span id="copy">&copy; 2023 Meu Site. Todos os direitos reservados.</span>
+            <span id="copy">&copy; 2023 Luidson Lima Santos.</span>
             <ul class="navbar-nav ms-sm-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#" id="about">Sobre nós</a>
+                    <a class="nav-link" href="#" id="about">Sobre</a>
                 </li>
             </ul>
         </div>

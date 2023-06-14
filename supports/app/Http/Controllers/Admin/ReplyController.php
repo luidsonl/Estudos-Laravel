@@ -29,4 +29,16 @@ class ReplyController extends Controller
         $reply->create($data);
         return redirect()->route('supports.show', $data['support_id']);
     }
+
+    public function destroy(string|int $id, Reply $reply){
+        if(!$reply = $reply->find($id)){
+            return redirect()->back();
+        }
+        if(Auth::user()->id != $reply->user_id){
+            return redirect()->back();
+        }
+        $reply->delete();
+
+        return redirect()->route('supports.show', $reply['support_id']);
+    }
 }

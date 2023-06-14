@@ -16,6 +16,37 @@
                     <label for="body">Pergunta:</label>
                     <textarea class="form-control" id="body" name="body" cols="30" rows="5" placeholder="Pergunta">{{$support->body}}</textarea>
                 </div>
+                <div class="mb-3 d-flex justify-content-between">
+                    <div>
+                        <input type="radio" name="status" value="active" id="radioActive" {{ 
+                            $support->status === 'active' ? 'checked' : '' 
+                            }}>
+                        <label for="radioActive">Ativo</label>
+                    </div>
+                    
+                    <div>
+                        <input type="radio" name="status" value="pending" id="radioPending" {{ 
+                            $support->status === 'pending' ? 'checked' : '' 
+                            }}>
+                        <label for="radioPending">Pendente</label>
+                    </div>
+                    
+                    <div>
+                        <input type="radio" name="status" value="completed" id="radioCompleted" {{
+                            $support->status === 'completed' ? 'checked' : ''
+                            }}>
+                        <label for="radioCompleted">Completo</label>
+                    </div>
+                    
+                    <div>
+                        <input type="radio" name="status" value="archived" id="radioArchived" {{ 
+                            $support->status === 'archived' ? 'checked' : '' 
+                            }}>
+                        <label for="radioArchived">Arquivado</label>
+                    </div>
+                    
+                </div>
+                
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Atualizar</button>
                 </div>
