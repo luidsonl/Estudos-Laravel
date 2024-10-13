@@ -1,7 +1,3 @@
-# [:file_folder: E-commerce simples](./e-commerce)
-
-*Status: Em progresso*
-
 # [:file_folder: Fórum de dúvidas simples](./supports)
 
 
