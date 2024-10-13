@@ -25,6 +25,7 @@ class MigrationTest extends TestCase
         $this->assertTrue(Schema::hasTable('comments'));
         $this->assertTrue(Schema::hasTable('permission_role'));
         $this->assertTrue(Schema::hasTable('role_user'));
+        $this->assertTrue(Schema::hasTable('settings'));
     }
 
     /** @test */
@@ -113,6 +114,19 @@ class MigrationTest extends TestCase
         $this->assertEquals('bigint', Schema::getColumnType('role_user', 'role_id'));
     }
 
+    public function it_has_correct_columns_in_role_settings_table()
+    {
+        $this->assertTrue(Schema::hasTable('settings'));
+
+        $this->assertTrue(Schema::hasColumn('settings', 'id'));
+        $this->assertTrue(Schema::hasColumn('settings', 'key'));
+        $this->assertTrue(Schema::hasColumn('settings', 'value'));
+
+        $this->assertEquals('bigint', Schema::getColumnType('settings', 'id'));
+        $this->assertEquals('varchar', Schema::getColumnType('settings', 'key'));
+        $this->assertEquals('text', Schema::getColumnType('settings', 'value'));
+    }
+
     /** @test */
     public function it_rolls_back_migrations()
     {
@@ -121,6 +135,7 @@ class MigrationTest extends TestCase
         $this->assertTrue(Schema::hasTable('roles'));
         $this->assertTrue(Schema::hasTable('posts'));
         $this->assertTrue(Schema::hasTable('comments'));
+        $this->assertTrue(Schema::hasTable('settings'));
 
         $this->artisan('migrate:rollback');
 
@@ -130,6 +145,7 @@ class MigrationTest extends TestCase
         $this->assertFalse(Schema::hasTable('roles'));
         $this->assertFalse(Schema::hasTable('posts'));
         $this->assertFalse(Schema::hasTable('comments'));
+        $this->assertFalse(Schema::hasTable('settings'));
 
         $this->artisan('migrate');
     }
