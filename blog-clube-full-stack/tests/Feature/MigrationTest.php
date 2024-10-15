@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+
 
 class MigrationTest extends TestCase
 {
@@ -26,6 +28,7 @@ class MigrationTest extends TestCase
         $this->assertTrue(Schema::hasTable('permission_role'));
         $this->assertTrue(Schema::hasTable('role_user'));
         $this->assertTrue(Schema::hasTable('settings'));
+        $this->assertTrue(Schema::hasTable('media'));
     }
 
     /** @test */
@@ -36,13 +39,13 @@ class MigrationTest extends TestCase
         $this->assertTrue(Schema::hasColumn('users', 'id'));
         $this->assertTrue(Schema::hasColumn('users', 'email'));
         $this->assertTrue(Schema::hasColumn('users', 'password'));
-        $this->assertTrue(Schema::hasColumn('users', 'picture'));
+        $this->assertTrue(Schema::hasColumn('users', 'thumb_id'));
         $this->assertTrue(Schema::hasColumn('users', 'name'));
 
         $this->assertEquals('bigint', Schema::getColumnType('users', 'id'));
         $this->assertEquals('varchar', Schema::getColumnType('users', 'email'));
         $this->assertEquals('varchar', Schema::getColumnType('users', 'password'));
-        $this->assertEquals('varchar', Schema::getColumnType('users', 'picture'));
+        $this->assertEquals('bigint', Schema::getColumnType('users', 'thumb_id'));
         $this->assertEquals('varchar', Schema::getColumnType('users', 'name'));
 
 
@@ -57,14 +60,14 @@ class MigrationTest extends TestCase
         $this->assertTrue(Schema::hasColumn('posts', 'user_id'));
         $this->assertTrue(Schema::hasColumn('posts', 'title'));
         $this->assertTrue(Schema::hasColumn('posts', 'slug'));
-        $this->assertTrue(Schema::hasColumn('posts', 'thumb'));
+        $this->assertTrue(Schema::hasColumn('posts', 'thumb_id'));
         $this->assertTrue(Schema::hasColumn('posts', 'content'));
 
         $this->assertEquals('bigint', Schema::getColumnType('posts', 'id'));
         $this->assertEquals('bigint', Schema::getColumnType('posts', 'user_id'));
         $this->assertEquals('varchar', Schema::getColumnType('posts', 'title'));
         $this->assertEquals('varchar', Schema::getColumnType('posts', 'slug'));
-        $this->assertEquals('varchar', Schema::getColumnType('posts', 'thumb'));
+        $this->assertEquals('bigint', Schema::getColumnType('posts', 'thumb_id'));
         $this->assertEquals('text', Schema::getColumnType('posts', 'content'));
     }
 
@@ -134,6 +137,55 @@ class MigrationTest extends TestCase
     }
 
     /** @test */
+    public function it_has_correct_columns_in_media_table()
+    {
+        $this->assertTrue(Schema::hasTable('media'));
+
+        $this->assertTrue(Schema::hasColumn('media', 'id'));
+        $this->assertTrue(Schema::hasColumn('media', 'path'));
+        $this->assertTrue(Schema::hasColumn('media', 'name'));
+        $this->assertTrue(Schema::hasColumn('media', 'type'));
+        $this->assertTrue(Schema::hasColumn('media', 'size'));
+        $this->assertTrue(Schema::hasColumn('media', 'created_at'));
+        $this->assertTrue(Schema::hasColumn('media', 'updated_at'));
+
+        $this->assertEquals('bigint', Schema::getColumnType('media', 'id'));
+        $this->assertEquals('varchar', Schema::getColumnType('media', 'path'));
+        $this->assertEquals('varchar', Schema::getColumnType('media', 'name'));
+        $this->assertEquals('varchar', Schema::getColumnType('media', 'type'));
+        $this->assertEquals('bigint', Schema::getColumnType('media', 'size'));
+        $this->assertEquals('timestamp', Schema::getColumnType('media', 'created_at'));
+        $this->assertEquals('timestamp', Schema::getColumnType('media', 'updated_at'));
+    }
+
+    public function it_has_correct_relationships_between_tables()
+    {
+        $this->assertTrue(Schema::hasTable('media'));
+
+        $this->assertTrue(Schema::hasColumn('users', 'thumb_id'));
+        $this->assertTrue(Schema::hasColumn('posts', 'thumb_id'));
+
+        $this->assertTrue(Schema::hasColumn('posts', 'user_id'));
+        $this->assertTrue(Schema::hasColumn('comments', 'post_id'));
+
+        DB::table('media')->insert(['id' => 1]);
+        DB::table('users')->insert(['id' => 1, 'thumb_id' => 1]);
+        DB::table('posts')->insert(['id' => 1, 'thumb_id' => 1, 'user_id' => 1]);
+
+        $this->assertDatabaseHas('users', ['thumb_id' => 1]);
+        $this->assertDatabaseHas('posts', ['thumb_id' => 1, 'user_id' => 1]);
+
+        DB::table('comments')->insert(['id' => 1, 'post_id' => 1]);
+        $this->assertDatabaseHas('comments', ['post_id' => 1]);
+
+        DB::table('posts')->where('id', 1)->delete();
+        $this->assertDatabaseMissing('comments', ['post_id' => 1]);
+    }
+
+
+
+
+    /** @test */
     public function it_rolls_back_migrations()
     {
         $this->assertTrue(Schema::hasTable('users'));
@@ -145,7 +197,6 @@ class MigrationTest extends TestCase
 
         $this->artisan('migrate:rollback');
 
-        // Verifique se as tabelas foram removidas
         $this->assertFalse(Schema::hasTable('users'));
         $this->assertFalse(Schema::hasTable('permissions'));
         $this->assertFalse(Schema::hasTable('roles'));
@@ -155,4 +206,8 @@ class MigrationTest extends TestCase
 
         $this->artisan('migrate');
     }
+
+    
+
+
 }
