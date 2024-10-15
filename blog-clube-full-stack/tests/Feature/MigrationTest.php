@@ -36,11 +36,13 @@ class MigrationTest extends TestCase
         $this->assertTrue(Schema::hasColumn('users', 'id'));
         $this->assertTrue(Schema::hasColumn('users', 'email'));
         $this->assertTrue(Schema::hasColumn('users', 'password'));
+        $this->assertTrue(Schema::hasColumn('users', 'picture'));
         $this->assertTrue(Schema::hasColumn('users', 'name'));
 
         $this->assertEquals('bigint', Schema::getColumnType('users', 'id'));
         $this->assertEquals('varchar', Schema::getColumnType('users', 'email'));
         $this->assertEquals('varchar', Schema::getColumnType('users', 'password'));
+        $this->assertEquals('varchar', Schema::getColumnType('users', 'picture'));
         $this->assertEquals('varchar', Schema::getColumnType('users', 'name'));
 
 
@@ -54,11 +56,15 @@ class MigrationTest extends TestCase
         $this->assertTrue(Schema::hasColumn('posts', 'id'));
         $this->assertTrue(Schema::hasColumn('posts', 'user_id'));
         $this->assertTrue(Schema::hasColumn('posts', 'title'));
+        $this->assertTrue(Schema::hasColumn('posts', 'slug'));
+        $this->assertTrue(Schema::hasColumn('posts', 'thumb'));
         $this->assertTrue(Schema::hasColumn('posts', 'content'));
 
         $this->assertEquals('bigint', Schema::getColumnType('posts', 'id'));
         $this->assertEquals('bigint', Schema::getColumnType('posts', 'user_id'));
         $this->assertEquals('varchar', Schema::getColumnType('posts', 'title'));
+        $this->assertEquals('varchar', Schema::getColumnType('posts', 'slug'));
+        $this->assertEquals('varchar', Schema::getColumnType('posts', 'thumb'));
         $this->assertEquals('text', Schema::getColumnType('posts', 'content'));
     }
 
