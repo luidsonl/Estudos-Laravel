@@ -16,8 +16,10 @@ class SettingFactory extends Factory
      */
     public function definition(): array
     {
+        $isBoolean = $this->faker->boolean();
         return [
-            //
+            'key' => $this->faker->name(),
+            'value' => $isBoolean ? (string) $this->faker->boolean() : $this->faker->name(),
         ];
     }
 }

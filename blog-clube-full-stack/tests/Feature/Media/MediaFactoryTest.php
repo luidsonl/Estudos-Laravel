@@ -9,7 +9,8 @@ use App\Models\Media;
 
 class MediaFactoryTest extends TestCase
 {
-    
+    //use RefreshDatabase;
+
     /** @test */
     public function it_creates_valid_media_using_factory()
     {

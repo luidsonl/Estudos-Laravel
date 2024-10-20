@@ -16,24 +16,24 @@ class MediaFactory extends Factory
      */
     public function definition(): array
     {
-        $date = now();
-        $year = $date->format('Y');
-        $month = $date->format('m');
-        $day = $date->format('d');
 
-        $directory = "public/upload/media/$year/$month/$day";
+        $imageId = $this->faker->numberBetween(1, 1000); // Você pode definir um intervalo
+        $imageUrl = "https://picsum.photos/640/480?image={$imageId}";
 
-        if (!file_exists($directory)) {
-            mkdir($directory, 0755, true);
-        }
+        $imageName = "image_{$imageId}.jpg";
 
-        $path = fake()->image(format: IMG_JPG ,dir: $directory, width:640, height: 480);
-        $name = basename($path);
+        $relativePath = "upload/$imageName";
+
+        $absPath = public_path($relativePath);
+
+        // Faz o download da imagem
+        file_put_contents($absPath, file_get_contents($imageUrl));
+
         return [
-            'path' => $path,
-            'name' => $name,
+            'path' => $relativePath,
+            'name' => $imageName,
             'type' => 'image/jpeg',
-            'size' => $this -> faker -> numberBetween(1000, 5000),
+            'size' => filesize($absPath),
         ];
     }
 }

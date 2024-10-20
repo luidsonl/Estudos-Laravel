@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => bcrypt(value:'123'),
             'remember_token' => Str::random(10),
-            'picture' => fake()->image(dir: 'public/upload/profile_pics', width:640, height: 480),
+            'thumb_id' => '',
         ];
     }
 
