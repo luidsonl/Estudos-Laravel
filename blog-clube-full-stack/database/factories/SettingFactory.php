@@ -20,6 +20,7 @@ class SettingFactory extends Factory
         return [
             'key' => $this->faker->name(),
             'value' => $isBoolean ? (string) $this->faker->boolean() : $this->faker->name(),
+            'description' => fake()->paragraph(),
         ];
     }
 }

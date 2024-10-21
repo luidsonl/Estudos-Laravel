@@ -18,9 +18,11 @@ class CommentFactory extends Factory
      */
     public function definition(): array
     {
+        $user = User::factory()->create();
+        $post = Post::factory()->create();
         return [
-            'user_id' => User::pluck('id')->random(),
-            'post_id' => Post::pluck('id')->random(),
+            'user_id' => $user->id,
+            'post_id' => $post->id,
             'comment' => fake() -> paragraph(nbSentences: 5)
         ];
     }

@@ -123,6 +123,7 @@ class MigrationTest extends TestCase
         $this->assertEquals('bigint', Schema::getColumnType('role_user', 'role_id'));
     }
 
+    /** @test */
     public function it_has_correct_columns_in_role_settings_table()
     {
         $this->assertTrue(Schema::hasTable('settings'));
@@ -130,10 +131,12 @@ class MigrationTest extends TestCase
         $this->assertTrue(Schema::hasColumn('settings', 'id'));
         $this->assertTrue(Schema::hasColumn('settings', 'key'));
         $this->assertTrue(Schema::hasColumn('settings', 'value'));
+        $this->assertTrue(Schema::hasColumn('settings', 'description'));
 
         $this->assertEquals('bigint', Schema::getColumnType('settings', 'id'));
         $this->assertEquals('varchar', Schema::getColumnType('settings', 'key'));
-        $this->assertEquals('text', Schema::getColumnType('settings', 'value'));
+        $this->assertEquals('varchar', Schema::getColumnType('settings', 'value'));
+        $this->assertEquals('text', Schema::getColumnType('settings', 'description'));
     }
 
     /** @test */

@@ -22,7 +22,7 @@ class PostFactoryTest extends TestCase
             'content' => $post->content,
             'user_id' => $post->user_id,
             'slug' => $post->slug,
-            'thumb_id' => $post->thunb_id,
+            'thumb_id' => $post->thumb_id,
         ]);
     }
 }

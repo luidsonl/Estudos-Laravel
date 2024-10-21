@@ -19,14 +19,14 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-        $thumb = fake()->image(dir: 'public/upload/media', width:640, height: 480);
         $title = fake()->sentence(3);
         $media = Media::factory()->create();
+        $user = User::factory()->create();
         return [
             'title' => $title,
             'slug' => Str::slug($title),
             'thumb_id'=> $media->id,
-            'user_id' => User::pluck('id')->random(),
+            'user_id' => $user->id,
             'content' => fake()->paragraph(),
         ];
     }

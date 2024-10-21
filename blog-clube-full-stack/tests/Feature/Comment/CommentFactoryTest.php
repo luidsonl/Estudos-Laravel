@@ -4,13 +4,12 @@ namespace Tests\Feature\Comment;
 
 use App\Models\Comment;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class CommentFactoryTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     public function test_example(): void
     {
         $comment = Comment::factory()->create();
