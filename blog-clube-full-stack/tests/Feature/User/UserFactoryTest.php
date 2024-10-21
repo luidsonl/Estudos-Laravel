@@ -18,6 +18,7 @@ class UserFactoryTest extends TestCase
             'id' => $user->id,
             'email' => $user->email,
             'name' => $user->name,
+            'thumb_id'=> $user->thumb_id
         ]);
     }
 }

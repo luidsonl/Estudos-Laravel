@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
             $table->string('slug');
-            $table->unsignedBigInteger('thumb_id');
+            $table->unsignedBigInteger('thumb_id')->nullable();
+            $table->foreign('thumb_id')->references('id')->on('media')->onDelete('set null');
             $table->text('content');
             $table->timestamps();
         });
