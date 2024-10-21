@@ -9,6 +9,8 @@ use App\Models\User;
 
 class UserFactoryTest extends TestCase
 {
+
+    use RefreshDatabase;
     /** @test */
     public function it_creates_valid_user_using_factory()
     {

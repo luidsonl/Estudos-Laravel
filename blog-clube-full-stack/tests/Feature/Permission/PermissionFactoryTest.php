@@ -9,7 +9,7 @@ use App\Models\Permission;
 
 class PermissionFactoryTest extends TestCase
 {
-    
+    use RefreshDatabase;
     /** @test */
     public function it_creates_valid_permission_using_factory()
     {

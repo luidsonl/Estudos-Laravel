@@ -44,6 +44,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function thumb()
+    {
+        return $this->belongsTo(Media::class, 'thumb_id', 'id');
+    }
+
     public function roles()
     {
         return $this->belongsToMany(Role::class);

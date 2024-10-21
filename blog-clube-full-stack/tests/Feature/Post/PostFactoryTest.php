@@ -9,6 +9,8 @@ use App\Models\Post;
 
 class PostFactoryTest extends TestCase
 {
+
+    use RefreshDatabase;
     /** @test */
     public function it_creates_valid_post_using_factory()
     {

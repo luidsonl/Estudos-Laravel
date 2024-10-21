@@ -9,9 +9,8 @@ use Tests\TestCase;
 
 class CommentFactoryTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
+    use RefreshDatabase;
+    
     public function test_example(): void
     {
         $comment = Comment::factory()->create();
