@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->foreignId('media_id')->nullable()->constrained('media')->onDelete('set null');
             $table->foreignId('status_id')->nullable()->constrained('statuses')->onDelete('set null');
-            $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('set null');
             $table->string('title');
             $table->string('slug');
-
-            $table->text('content');
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('categories');
     }
 };

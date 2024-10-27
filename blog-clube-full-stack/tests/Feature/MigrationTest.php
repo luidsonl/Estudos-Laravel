@@ -16,6 +16,7 @@ class MigrationTest extends TestCase
         parent::setUp();
     }
 
+
     /** @test */
     public function it_creates_required_tables()
     {
@@ -25,12 +26,12 @@ class MigrationTest extends TestCase
         $this->assertTrue(Schema::hasTable('posts'));
         $this->assertTrue(Schema::hasTable('comments'));
         $this->assertTrue(Schema::hasTable('permissions_roles'));
-        $this->assertTrue(Schema::hasTable('roles_users'));
         $this->assertTrue(Schema::hasTable('settings'));
         $this->assertTrue(Schema::hasTable('media'));
         $this->assertTrue(Schema::hasTable('categories'));
         $this->assertTrue(Schema::hasTable('tags'));
         $this->assertTrue(Schema::hasTable('tags_posts'));
+        $this->assertTrue(Schema::hasTable('statuses'));
     }
 
     /** @test */
@@ -69,8 +70,8 @@ class MigrationTest extends TestCase
         $this->assertTrue(Schema::hasColumn('posts', 'user_id'));
         $this->assertEquals('bigint', Schema::getColumnType('posts', 'user_id'));
 
-        $this->assertTrue(Schema::hasColumn('posts', 'thumb_id'));
-        $this->assertEquals('bigint', Schema::getColumnType('posts', 'thumb_id'));
+        $this->assertTrue(Schema::hasColumn('posts', 'media_id'));
+        $this->assertEquals('bigint', Schema::getColumnType('posts', 'media_id'));
 
         $this->assertTrue(Schema::hasColumn('posts', 'status_id'));
         $this->assertEquals('bigint', Schema::getColumnType('posts', 'status_id'));
@@ -95,6 +96,7 @@ class MigrationTest extends TestCase
         
     }
 
+    /** @test */
     public function it_has_correct_columns_in_categories_table()
     {
         $this->assertTrue(Schema::hasTable('categories'));
@@ -111,11 +113,11 @@ class MigrationTest extends TestCase
         $this->assertTrue(Schema::hasColumn('categories', 'slug'));
         $this->assertEquals('varchar', Schema::getColumnType('categories', 'slug'));
 
-        $this->assertTrue(Schema::hasColumn('categories', 'thumb_id'));
-        $this->assertEquals('bigint', Schema::getColumnType('categories', 'thumb_id'));
+        $this->assertTrue(Schema::hasColumn('categories', 'media_id'));
+        $this->assertEquals('bigint', Schema::getColumnType('categories', 'media_id'));
 
         $this->assertTrue(Schema::hasColumn('categories', 'description'));
-        $this->assertEquals('text', Schema::getColumnType('posts', 'description'));
+        $this->assertEquals('text', Schema::getColumnType('categories', 'description'));
 
         $this->assertTrue(Schema::hasColumn('categories', 'status_id'));
         $this->assertEquals('bigint', Schema::getColumnType('categories', 'status_id'));
@@ -125,6 +127,27 @@ class MigrationTest extends TestCase
 
         $this->assertTrue(Schema::hasColumn('categories', 'updated_at'));
         $this->assertEquals('timestamp', Schema::getColumnType('categories', 'updated_at'));
+    }
+
+    /** @test */
+    public function it_has_correct_columns_in_statuses_table()
+    {
+        $this->assertTrue(Schema::hasTable('statuses'));
+
+        $this->assertTrue(Schema::hasColumn('statuses', 'id'));
+        $this->assertEquals('bigint', Schema::getColumnType('statuses', 'id'));
+
+        $this->assertTrue(Schema::hasColumn('statuses', 'name'));
+        $this->assertEquals('varchar', Schema::getColumnType('statuses', 'name'));
+
+        $this->assertTrue(Schema::hasColumn('statuses', 'description'));
+        $this->assertEquals('text', Schema::getColumnType('statuses', 'description'));
+
+        $this->assertTrue(Schema::hasColumn('statuses', 'created_at'));
+        $this->assertEquals('timestamp', Schema::getColumnType('statuses', 'created_at'));
+
+        $this->assertTrue(Schema::hasColumn('statuses', 'updated_at'));
+        $this->assertEquals('timestamp', Schema::getColumnType('statuses', 'updated_at'));
     }
 
 
@@ -168,42 +191,24 @@ class MigrationTest extends TestCase
     }
 
     /** @test */
-    public function it_has_correct_columns_in_permission_role_table()
+    public function it_has_correct_columns_in_permissions_roles_table()
     {
-        $this->assertTrue(Schema::hasTable('permission_role'));
+        $this->assertTrue(Schema::hasTable('permissions_roles'));
 
-        $this->assertTrue(Schema::hasColumn('permission_role', 'id'));
-        $this->assertEquals('bigint', Schema::getColumnType('permission_role', 'id'));
+        $this->assertTrue(Schema::hasColumn('permissions_roles', 'id'));
+        $this->assertEquals('bigint', Schema::getColumnType('permissions_roles', 'id'));
 
-        $this->assertTrue(Schema::hasColumn('permission_role', 'permission_id'));
-        $this->assertEquals('bigint', Schema::getColumnType('permission_role', 'permission_id'));
+        $this->assertTrue(Schema::hasColumn('permissions_roles', 'permission_id'));
+        $this->assertEquals('bigint', Schema::getColumnType('permissions_roles', 'permission_id'));
 
-        $this->assertTrue(Schema::hasColumn('permission_role', 'role_id'));
-        $this->assertEquals('bigint', Schema::getColumnType('permission_role', 'role_id'));
+        $this->assertTrue(Schema::hasColumn('permissions_roles', 'role_id'));
+        $this->assertEquals('bigint', Schema::getColumnType('permissions_roles', 'role_id'));
 
-        $this->assertTrue(Schema::hasColumn('permission_role', 'created_at'));
-        $this->assertEquals('timestamp', Schema::getColumnType('permission_role', 'created_at'));
+        $this->assertTrue(Schema::hasColumn('permissions_roles', 'created_at'));
+        $this->assertEquals('timestamp', Schema::getColumnType('permissions_roles', 'created_at'));
 
-        $this->assertTrue(Schema::hasColumn('permission_role', 'updated_at'));
-        $this->assertEquals('timestamp', Schema::getColumnType('permission_role', 'updated_at'));
-    }
-
-    /** @test */
-    public function it_has_correct_columns_in_role_user_table()
-    {
-        $this->assertTrue(Schema::hasTable('role_user'));
-
-        $this->assertTrue(Schema::hasColumn('role_user', 'id'));
-        $this->assertEquals('bigint', Schema::getColumnType('role_user', 'id'));
-
-        $this->assertTrue(Schema::hasColumn('role_user', 'user_id'));
-        $this->assertEquals('bigint', Schema::getColumnType('role_user', 'user_id'));
-
-        $this->assertTrue(Schema::hasColumn('role_user', 'created_at'));
-        $this->assertEquals('timestamp', Schema::getColumnType('role_user', 'created_at'));
-
-        $this->assertTrue(Schema::hasColumn('role_user', 'updated_at'));
-        $this->assertEquals('timestamp', Schema::getColumnType('role_user', 'updated_at'));
+        $this->assertTrue(Schema::hasColumn('permissions_roles', 'updated_at'));
+        $this->assertEquals('timestamp', Schema::getColumnType('permissions_roles', 'updated_at'));
     }
 
     /** @test */
@@ -224,7 +229,7 @@ class MigrationTest extends TestCase
         $this->assertEquals('varchar', Schema::getColumnType('settings', 'type'));
 
         $this->assertTrue(Schema::hasColumn('settings', 'created_at'));
-        $this->assertEquals('varchar', Schema::getColumnType('settings', 'created_at'));
+        $this->assertEquals('timestamp', Schema::getColumnType('settings', 'created_at'));
 
         $this->assertTrue(Schema::hasColumn('settings', 'updated_at'));
         $this->assertEquals('timestamp', Schema::getColumnType('settings', 'updated_at'));
