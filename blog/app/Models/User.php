@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'thumb_id',
+        'media_id',
     ];
 
     /**
@@ -44,28 +44,28 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     public function thumb()
     {
-        return $this->belongsTo(Media::class, 'thumb_id', 'id');
+        return $this->belongsTo(Media::class);
     }
 
-    public function roles()
+    public function role()
     {
-        return $this->belongsToMany(Role::class);
-    }
-
-    public function hasRole($role)
-    {
-        return $this->roles()->where('name', $role)->exists();
+        return $this->belongsTo(Role::class);
     }
 
     public function hasPermission($permission)
     {
-        foreach ($this->roles as $role) {
-            if ($role->permissions()->where('name', $permission)->exists()) {
-                return true;
-            }
+        
+        if ($this->role->permissions()->where('name', $permission)->exists()) {
+            return true;
         }
+        
         return false;
     }
 }

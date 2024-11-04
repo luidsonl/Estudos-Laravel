@@ -31,7 +31,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => bcrypt(value:'123'),
             'remember_token' => Str::random(10),
-            'thumb_id' => $media->id,
+            'media_id' => $media->id,
         ];
     }
 

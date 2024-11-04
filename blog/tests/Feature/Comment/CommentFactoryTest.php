@@ -10,7 +10,8 @@ class CommentFactoryTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_example(): void
+    /** @test **/
+    public function it_creates_valid_comments_using_factory(): void
     {
         $comment = Comment::factory()->create();
 

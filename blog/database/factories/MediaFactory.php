@@ -3,37 +3,31 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Media;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Media>
- */
 class MediaFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = Media::class;
+
     public function definition(): array
     {
-
-        $imageId = $this->faker->numberBetween(1, 1000); // Você pode definir um intervalo
-        $imageUrl = "https://picsum.photos/640/480?image={$imageId}";
-
+        $imageId = $this->faker->numberBetween(1, 1000);
         $imageName = "image_{$imageId}.jpg";
 
-        $relativePath = "upload/$imageName";
+        $mediaContent = file_get_contents("https://picsum.photos/640/480?image={$imageId}");
 
-        $absPath = public_path($relativePath);
+        // Crie a instância do model sem salvar no banco
+        $media = new Media();
+        
+        // Chame o método storeMedia para armazenar e definir os dados
+        $media->storeMedia($mediaContent, $imageName);
 
-        // Faz o download da imagem
-        file_put_contents($absPath, file_get_contents($imageUrl));
-
+        // Retorne os atributos definidos para o banco
         return [
-            'path' => $relativePath,
-            'name' => $imageName,
-            'type' => 'image/jpeg',
-            'size' => filesize($absPath),
+            'path' => $media->path,
+            'name' => $media->name,
+            'type' => $media->type,
+            'size' => $media->size,
         ];
     }
 }
