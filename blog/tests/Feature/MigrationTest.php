@@ -327,16 +327,16 @@ class MigrationTest extends TestCase
         $this->assertEquals('varchar', Schema::getColumnType('metafields', 'name'));
 
         $this->assertTrue(Schema::hasColumn('metafields', 'type'));
-        $this->assertEquals('varchar', Schema::getColumnType('comments', 'type'));
+        $this->assertEquals('varchar', Schema::getColumnType('metafields', 'type'));
 
         $this->assertTrue(Schema::hasColumn('metafields', 'is_multivalued'));
         $this->assertEquals('tinyint', Schema::getColumnType('metafields', 'is_multivalued'));
 
         $this->assertTrue(Schema::hasColumn('posts', 'created_at'));
-        $this->assertEquals('timestamp', Schema::getColumnType('posts', 'created_at'));
+        $this->assertEquals('timestamp', Schema::getColumnType('metafields', 'created_at'));
 
         $this->assertTrue(Schema::hasColumn('posts', 'updated_at'));
-        $this->assertEquals('timestamp', Schema::getColumnType('posts', 'updated_at'));
+        $this->assertEquals('timestamp', Schema::getColumnType('metafields', 'updated_at'));
         
     }
 
@@ -351,8 +351,8 @@ class MigrationTest extends TestCase
         $this->assertTrue(Schema::hasColumn('metafields_post_types', 'metafield_id'));
         $this->assertEquals('bigint', Schema::getColumnType('metafields_post_types', 'metafield_id'));
 
-        $this->assertTrue(Schema::hasColumn('metafields_post_types', 'type_id'));
-        $this->assertEquals('bigint', Schema::getColumnType('metafields_post_types', 'type_id'));
+        $this->assertTrue(Schema::hasColumn('metafields_post_types', 'post_type_id'));
+        $this->assertEquals('bigint', Schema::getColumnType('metafields_post_types', 'post_type_id'));
 
         $this->assertTrue(Schema::hasColumn('metafields_post_types', 'created_at'));
         $this->assertEquals('timestamp', Schema::getColumnType('metafields_post_types', 'created_at'));

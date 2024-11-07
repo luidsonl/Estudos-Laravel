@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreignId('media_id')->nullable()->constrained('media')->onDelete('set null');
             $table->foreignId('status_id')->nullable()->constrained('statuses')->onDelete('set null');
             $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('set null');
+            $table->foreignId('post_type_id')->nullable()->constrained('post_types')->onDelete('set null');
             $table->string('title');
             $table->string('slug');
-
             $table->text('content');
             $table->timestamps();
         });

@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('metafields_post_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('post_id')->constrained('posts')->onDelete('cascade');
-            $table->foreignId('comment_id')->nullable()->constrained('comments')->onDelete('cascade');
-            $table->text('content');
+            $table->foreignId('metafield_id')->nullable()->constrained('metafields')->onDelete('cascade');
+            $table->foreignId('post_type_id')->nullable()->constrained('post_types')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('metafields_post_types');
     }
 };
