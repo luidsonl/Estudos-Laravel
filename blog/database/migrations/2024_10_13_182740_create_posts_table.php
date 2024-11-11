@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('content');
+            $table->boolean('is_published');
             $table->timestamps();
         });
     }

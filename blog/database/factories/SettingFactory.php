@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Enums\DataType;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Setting>
@@ -16,11 +17,19 @@ class SettingFactory extends Factory
      */
     public function definition(): array
     {
-        $isBoolean = $this->faker->boolean();
+        $type = $this->faker->randomElement(DataType::getValues()); 
+        $valuesFaker = [
+            'VARCHAR' => $this->faker->words($nb = 3, $asText = true),
+            'TEXT' => $this->faker->paragraph(1),
+            'INT' => $this->faker->randomDigit(),
+            'BOOLEAN' => $this->faker->boolean(),
+            'FLOAT'=> $this->faker->randomFloat()
+        ];
+        
         return [
-            'key' => $this->faker->name(),
-            'value' => $isBoolean ? (string) $this->faker->boolean() : $this->faker->name(),
-            'description' => fake()->paragraph(),
+            'key' => $this->faker->uuid(),
+            'type'=> $type,
+            'value' => $valuesFaker[$type],
         ];
     }
 }
