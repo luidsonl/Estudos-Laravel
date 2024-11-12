@@ -12,7 +12,7 @@ class MediaFactory extends Factory
     public function definition(): array
     {
         $imageId = $this->faker->numberBetween(1, 1000);
-        $imageName = "image_{$imageId}.jpg";
+        $mediaName = "image_{$imageId}.jpg";
 
         $mediaContent = file_get_contents("https://picsum.photos/640/480?image={$imageId}");
 
@@ -20,12 +20,13 @@ class MediaFactory extends Factory
         $media = new Media();
         
         // Chame o método storeMedia para armazenar e definir os dados
-        $media->storeMedia($mediaContent, $imageName);
+        $media->storeMedia($mediaContent, $mediaName);
 
         // Retorne os atributos definidos para o banco
         return [
             'path' => $media->path,
-            'name' => $media->name,
+            'name' => $mediaName,
+            'description' =>$this->faker->name(),
             'type' => $media->type,
             'size' => $media->size,
         ];

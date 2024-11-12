@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table-> string('path');
             $table-> string('name');
+            $table-> text('description')->nullable();
             $table-> string('type');
             $table-> unsignedBigInteger('size');
             $table->timestamps();

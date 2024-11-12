@@ -52,6 +52,9 @@ class MigrationTest extends TestCase
         $this->assertTrue(Schema::hasColumn('media', 'name'));
         $this->assertEquals('varchar', Schema::getColumnType('media', 'name'));
 
+        $this->assertTrue(Schema::hasColumn('media', 'description'));
+        $this->assertEquals('text', Schema::getColumnType('media', 'description'));
+
         $this->assertTrue(Schema::hasColumn('media', 'type'));
         $this->assertEquals('varchar', Schema::getColumnType('media', 'type'));
 
@@ -88,6 +91,8 @@ class MigrationTest extends TestCase
         $this->assertTrue(Schema::hasColumn('users', 'role_id'));
         $this->assertEquals('bigint', Schema::getColumnType('users', 'role_id'));
 
+        $this->assertTrue(Schema::hasColumn('users', 'is_email_notification_enabled'));
+        $this->assertEquals('tinyint', Schema::getColumnType('users', 'is_email_notification_enabled'));
     }
 
     /** @test */

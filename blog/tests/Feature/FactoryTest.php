@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Media;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\Setting;
@@ -52,6 +53,21 @@ class FactoryTest extends TestCase
             'id' => $role->id,
             'name' => $role->name,
             'description'=>$role->description,
+        ]);
+    }
+
+    /** @test */
+    public function it_creates_a_media_using_factory()
+    {
+        $media = Media::factory()->create();
+
+        $this->assertDatabaseHas('media', [
+            'id' => $media->id,
+            'path' => $media->path,
+            'name'=>$media->name,
+            'description'=>$media->description,
+            'type'=>$media->type,
+            'size'=>$media->size,
         ]);
     }
 }
