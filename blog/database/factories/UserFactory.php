@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Media;
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -24,14 +25,16 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $media = Media::factory()->create();
+
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => bcrypt(value:'123'),
             'remember_token' => Str::random(10),
-            'media_id' => $media->id,
+            'media_id' => Media::factory(),
+            'role_id' => Role::factory(),
+            'is_email_notification_enabled' => fake()->boolean(20)
         ];
     }
 
