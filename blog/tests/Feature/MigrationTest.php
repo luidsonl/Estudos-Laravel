@@ -236,9 +236,6 @@ class MigrationTest extends TestCase
         $this->assertTrue(Schema::hasColumn('categories', 'id'));
         $this->assertEquals('bigint', Schema::getColumnType('categories', 'id'));
 
-        $this->assertTrue(Schema::hasColumn('categories', 'user_id'));
-        $this->assertEquals('bigint', Schema::getColumnType('categories', 'user_id'));
-
         $this->assertTrue(Schema::hasColumn('categories', 'title'));
         $this->assertEquals('varchar', Schema::getColumnType('categories', 'title'));
 

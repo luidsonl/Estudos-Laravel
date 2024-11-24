@@ -13,16 +13,28 @@ class MediaFactory extends Factory
     {
         $imageId = $this->faker->numberBetween(1, 1000);
         $mediaName = "image_{$imageId}.jpg";
+        $image = $this->faker->image();
 
-        $mediaContent = file_get_contents("https://picsum.photos/640/480?image={$imageId}");
+        if(!$image)
+        {
+            for($i = 0; $i < 5; $i++) // tenta 5 vezes gerar a imagem
+            {
+                $image = $this->faker->image();
+                if($image)
+                {
+                    break;
+                }
+            }
+        }
 
-        // Crie a instância do model sem salvar no banco
+        $mediaContent = file_get_contents($image);
+
         $media = new Media();
         
-        // Chame o método storeMedia para armazenar e definir os dados
         $media->storeMedia($mediaContent, $mediaName);
 
-        // Retorne os atributos definidos para o banco
+        unlink($image);
+
         return [
             'path' => $media->path,
             'name' => $mediaName,

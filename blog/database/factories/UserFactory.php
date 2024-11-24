@@ -25,6 +25,8 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $media = Media::factory()->create();
+        $role = Role::factory()->create();
 
         return [
             'name' => fake()->name(),
@@ -32,8 +34,8 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => bcrypt(value:'123'),
             'remember_token' => Str::random(10),
-            'media_id' => Media::factory(),
-            'role_id' => Role::factory(),
+            'media_id' => $media->id,
+            'role_id' => $role->id,
             'is_email_notification_enabled' => fake()->boolean(20)
         ];
     }

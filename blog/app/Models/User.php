@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'media_id',
+        'role_id'
     ];
 
     /**
@@ -51,7 +52,7 @@ class User extends Authenticatable
 
     public function profilePicture()
     {
-        return $this->belongsTo(Media::class);
+        return $this->belongsTo(Media::class, 'media_id', 'id');
     }
 
     public function role()

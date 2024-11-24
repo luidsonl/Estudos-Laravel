@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Status extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'description',
+    ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
